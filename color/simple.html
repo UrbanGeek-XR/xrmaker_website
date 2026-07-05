@@ -1,0 +1,32 @@
+<!-- HTML -->
+<input type="color" id="colorPicker">
+<div id="result">
+  <div class="color-bar red"></div>
+  <div class="color-bar green"></div>
+  <div class="color-bar blue"></div>
+</div>
+
+<script>
+// 获取颜色并计算比例
+document.getElementById('colorPicker').addEventListener('input', function(e) {
+  const hex = e.target.value;
+  const r = parseInt(hex.substr(1, 2), 16);
+  const g = parseInt(hex.substr(3, 2), 16);
+  const b = parseInt(hex.substr(5, 2), 16);
+
+  // 计算比例并更新DOM
+  document.querySelector('.red').style.width = `${(r / 255) * 100}%`;
+  document.querySelector('.green').style.width = `${(g / 255) * 100}%`;
+  document.querySelector('.blue').style.width = `${(b / 255) * 100}%`;
+});
+</script>
+
+<style>
+.color-bar {
+  height: 20px;
+  transition: width 0.3s;
+}
+.red { background: #FF0000; }
+.green { background: #00FF00; }
+.blue { background: #0000FF; }
+</style>

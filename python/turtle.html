@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Python Turtle 函数大全 · 实例方法 & 模块级函数</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fb;
+            margin: 0;
+            padding: 24px 20px;
+            color: #1e2a3e;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #1e6f5c, #289672);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.25rem;
+        }
+        .subhead {
+            color: #4b6f8c;
+            margin-bottom: 2rem;
+            border-left: 4px solid #2c7a64;
+            padding-left: 16px;
+            font-weight: 400;
+        }
+        .search-bar {
+            background: white;
+            border-radius: 48px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            padding: 6px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+        .search-bar:focus-within {
+            border-color: #2c7a64;
+            box-shadow: 0 8px 24px rgba(44,122,100,0.12);
+        }
+        .search-icon {
+            font-size: 1.3rem;
+            color: #7f8c8d;
+        }
+        #searchInput {
+            flex: 1;
+            border: none;
+            padding: 14px 0;
+            font-size: 1rem;
+            background: transparent;
+            outline: none;
+            font-weight: 500;
+            color: #1e2a3e;
+        }
+        .badge-info {
+            background: #eef2f9;
+            border-radius: 32px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            color: #2c3e66;
+        }
+        .stats {
+            font-size: 0.85rem;
+            color: #4a627a;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .category-tag {
+            display: inline-block;
+            background: #e9ecef;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2c3e50;
+            letter-spacing: 0.3px;
+        }
+        table {
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th {
+            text-align: left;
+            padding: 16px 12px;
+            background: #f8fafc;
+            font-weight: 600;
+            color: #1f3a4b;
+            border-bottom: 1px solid #e2edf2;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(4px);
+        }
+        td {
+            padding: 12px 12px;
+            border-bottom: 1px solid #ecf3f8;
+            vertical-align: top;
+            color: #234;
+        }
+        tr:hover td {
+            background-color: #fefce8;
+        }
+        .func-signature {
+            font-family: 'Fira Code', 'JetBrains Mono', 'SF Mono', monospace;
+            font-weight: 500;
+            font-size: 0.85rem;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .prefix-badge {
+            background: #d9f0ec;
+            color: #0f5b4c;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 2px 10px;
+            display: inline-block;
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+        .desc {
+            color: #2c3e50;
+            line-height: 1.4;
+            font-size: 0.85rem;
+        }
+        .object-type {
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: #edf2f7;
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .footer-note {
+            margin-top: 36px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6c86a3;
+            border-top: 1px solid #e0e9f0;
+            padding-top: 24px;
+        }
+        @media (max-width: 700px) {
+            td, th { padding: 10px 8px; }
+            .func-signature { font-size: 0.75rem; white-space: normal; }
+            .object-type { font-size: 0.65rem; }
+        }
+        .no-results {
+            text-align: center;
+            padding: 48px 20px;
+            background: white;
+            border-radius: 28px;
+            color: #6c86a3;
+        }
+        .highlight {
+            background-color: #fff3bf;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🐢 Python Turtle · 完全函数手册</h1>
+    <div class="subhead">涵盖模块级函数 <code>turtle.*</code> 、海龟实例方法 <code>p.*</code> 以及屏幕控制 <code>screen.*</code> ，附详细功能说明</div>
+
+    <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索函数名、别名、功能描述 (例如 forward, circle, bgcolor, onclick...)">
+        <span class="badge-info">⚡ 实时过滤</span>
+    </div>
+    <div class="stats">
+        <span>📚 总计 <strong id="totalCount">0</strong> 个函数条目</span>
+        <span>💡 提示：支持函数名、参数、描述关键词搜索</span>
+    </div>
+
+    <div style="overflow-x: auto;">
+        <table id="funcTable">
+            <thead>
+                <tr><th style="min-width: 280px">📌 调用方式 (示例)</th><th style="min-width: 100px">🎯 对象类型</th><th>📖 功能讲解</th></tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- 动态渲染 -->
+            </tbody>
+        </table>
+    </div>
+    <div class="footer-note">
+        ✅ 所有函数均按官方文档整理 | <code>p = turtle.Pen()</code> 或 <code>turtle.Turtle()</code> 均可调用实例方法<br>
+        📎 模块级函数使用 <code>turtle.函数名()</code>；实例方法使用 <code>p.函数名()</code>；屏幕方法使用 <code>screen.函数名()</code>
+    </div>
+</div>
+
+<script>
+    // ---------- 全部函数数据 ----------
+    // 每个条目: { call: "调用示例字符串", objType: "对象类型说明", desc: "功能描述" }
+    // 涵盖模块级海龟/屏幕方法 + 实例方法（p.xxx 与 turtle.Turtle实例方法一致）
+    const functionsData = [];
+
+    // ----- 1. 模块级海龟函数 (默认海龟: turtle.func() ) -----
+    const moduleTurtleFuncs = [
+        { call: "turtle.forward(distance) / fd(distance)", desc: "向当前海龟方向前进指定距离（像素）。" },
+        { call: "turtle.backward(distance) / bk(distance) / back(distance)", desc: "后退指定距离。" },
+        { call: "turtle.right(angle) / rt(angle)", desc: "顺时针（右转）旋转 angle 度。" },
+        { call: "turtle.left(angle) / lt(angle)", desc: "逆时针（左转）旋转 angle 度。" },
+        { call: "turtle.goto(x, y) / setpos(x, y) / setposition(x, y)", desc: "移动到绝对坐标 (x, y)，落笔则绘制线条。" },
+        { call: "turtle.setx(x)", desc: "只改变 X 坐标，Y 不变。" },
+        { call: "turtle.sety(y)", desc: "只改变 Y 坐标，X 不变。" },
+        { call: "turtle.setheading(angle) / seth(angle)", desc: "设置海龟朝向为绝对角度（0°朝东，90°朝北）。" },
+        { call: "turtle.home()", desc: "回到原点 (0,0) 并朝向东。" },
+        { call: "turtle.circle(radius, extent=None, steps=None)", desc: "绘制圆或弧。半径正→圆心左侧；extent=角度；steps=正多边形边数。" },
+        { call: "turtle.dot(size=None, *color)", desc: "在当前位置画一个指定大小和颜色的圆点。" },
+        { call: "turtle.stamp()", desc: "将海龟形状「盖章」至画布，返回印章ID。" },
+        { call: "turtle.clearstamp(stampid)", desc: "删除指定ID的印章。" },
+        { call: "turtle.clearstamps(n=None)", desc: "删除印章：n>0删除前n个，n<0删除后n个，None则删除全部。" },
+        { call: "turtle.undo()", desc: "撤销上一步操作（需开启undobuffer）。" },
+        { call: "turtle.speed(speed=None)", desc: "设置速度 0~10（0最快，1最慢，6正常）。" },
+        { call: "turtle.pendown() / pd() / down()", desc: "落笔，移动时绘图。" },
+        { call: "turtle.penup() / pu() / up()", desc: "抬笔，移动时不绘图。" },
+        { call: "turtle.pensize(width=None) / width(width)", desc: "设置或返回画笔粗细。" },
+        { call: "turtle.pencolor(*args)", desc: "设置画笔颜色（支持颜色名或RGB）。" },
+        { call: "turtle.fillcolor(*args)", desc: "设置填充颜色。" },
+        { call: "turtle.color(*args)", desc: "同时设置画笔颜色和填充颜色。" },
+        { call: "turtle.begin_fill()", desc: "开始记录路径，准备填充。" },
+        { call: "turtle.end_fill()", desc: "结束填充，填充记录的形状。" },
+        { call: "turtle.filling()", desc: "返回当前是否处于填充状态（True/False）。" },
+        { call: "turtle.pen(pen=None, **pendict)", desc: "设置或返回画笔属性字典（颜色、粗细等）。" },
+        { call: "turtle.isdown()", desc: "画笔是否落下（True表示落下）。" },
+        { call: "turtle.shape(name=None)", desc: "设置海龟形状：arrow, turtle, circle, square, triangle, classic 或自定义。" },
+        { call: "turtle.resizemode(rmode=None)", desc: "设置调整模式：'auto','user','noresize'。" },
+        { call: "turtle.shapesize(stretch_wid, stretch_len, outline) / turtlesize()", desc: "拉伸海龟形状，设置轮廓宽度。" },
+        { call: "turtle.shearfactor(shear=None)", desc: "设置或返回形状的倾斜因子。" },
+        { call: "turtle.tilt(angle)", desc: "使海龟形状旋转指定角度（不影响朝向）。" },
+        { call: "turtle.settiltangle(angle)", desc: "将倾角设置为绝对角度。" },
+        { call: "turtle.tiltangle(angle=None)", desc: "获取或设置倾角。" },
+        { call: "turtle.shapetransform(t11, t12, t21, t22)", desc: "通过2x2矩阵变换形状（缩放/旋转/倾斜）。" },
+        { call: "turtle.get_shapepoly()", desc: "返回当前形状的多边形坐标元组。" },
+        { call: "turtle.showturtle() / st()", desc: "显示海龟图标。" },
+        { call: "turtle.hideturtle() / ht()", desc: "隐藏海龟图标。" },
+        { call: "turtle.isvisible()", desc: "返回海龟是否可见。" },
+        { call: "turtle.position() / pos()", desc: "获取当前坐标 (x, y)。" },
+        { call: "turtle.xcor()", desc: "返回 X 坐标。" },
+        { call: "turtle.ycor()", desc: "返回 Y 坐标。" },
+        { call: "turtle.heading()", desc: "返回当前朝向角度。" },
+        { call: "turtle.towards(x, y)", desc: "返回从海龟位置指向 (x,y) 的夹角。" },
+        { call: "turtle.distance(x, y=None)", desc: "返回海龟到目标点的距离。" },
+        { call: "turtle.degrees(fullcircle=360.0)", desc: "设置角度测量单位为度。" },
+        { call: "turtle.radians()", desc: "设置角度测量单位为弧度。" },
+        { call: "turtle.clone()", desc: "创建并返回海龟的克隆体。" },
+        { call: "turtle.getturtle() / getpen()", desc: "返回海龟对象自身（默认海龟）。" },
+        { call: "turtle.getscreen()", desc: "返回海龟所在的屏幕对象。" },
+        { call: "turtle.setundobuffer(size)", desc: "设置撤销缓冲区大小（size为整数）。" },
+        { call: "turtle.undobufferentries()", desc: "返回撤销缓冲区中的条目数。" },
+        { call: "turtle.write(arg, move=False, align='left', font=('Arial',8,'normal'))", desc: "在海龟位置书写文本。" }
+    ];
+    // 模块级屏幕函数 (默认屏幕: turtle.func())
+    const moduleScreenFuncs = [
+        { call: "turtle.setup(width=0.5, height=0.75, startx=None, starty=None)", desc: "设置主窗口大小和位置。" },
+        { call: "turtle.title(titlestring)", desc: "设置窗口标题。" },
+        { call: "turtle.bgcolor(*args)", desc: "设置或返回背景色。" },
+        { call: "turtle.bgpic(picname=None)", desc: "设置背景图片（仅支持GIF）。" },
+        { call: "turtle.clear()", desc: "清空绘图，海龟状态不变。" },
+        { call: "turtle.reset()", desc: "清空画面并重置海龟状态。" },
+        { call: "turtle.clearscreen()", desc: "清空屏幕（screen专用）。" },
+        { call: "turtle.resetscreen()", desc: "重置屏幕所有设置。" },
+        { call: "turtle.screensize(canvwidth=None, canvheight=None, bg=None)", desc: "设置画布尺寸和背景。" },
+        { call: "turtle.setworldcoordinates(llx, lly, urx, ury)", desc: "自定义坐标系（左下角到右上角）。" },
+        { call: "turtle.delay(delay=None)", desc: "设置或返回绘图延迟（毫秒）。" },
+        { call: "turtle.tracer(n=None, delay=None)", desc: "开启/关闭动画，n表示每n次操作更新一次。" },
+        { call: "turtle.update()", desc: "强制执行屏幕更新。" },
+        { call: "turtle.listen()", desc: "开始监听键盘事件。" },
+        { call: "turtle.onkey(fun, key)", desc: "绑定按键事件（key 如 'Up','space'）。" },
+        { call: "turtle.onkeypress(fun, key=None)", desc: "绑定按键按住事件。" },
+        { call: "turtle.onclick(fun, btn=1, add=None)", desc: "绑定鼠标点击海龟事件。" },
+        { call: "turtle.onscreenclick(fun, btn=1, add=None)", desc: "绑定鼠标点击屏幕任意位置。" },
+        { call: "turtle.onrelease(fun, btn=1, add=None)", desc: "绑定鼠标释放事件。" },
+        { call: "turtle.ondrag(fun, btn=1, add=None)", desc: "绑定鼠标拖拽海龟事件。" },
+        { call: "turtle.ontimer(fun, t=0)", desc: "定时执行函数（毫秒）。" },
+        { call: "turtle.mainloop() / done()", desc: "启动事件循环，保持窗口打开。" },
+        { call: "turtle.bye()", desc: "关闭图形窗口。" },
+        { call: "turtle.exitonclick()", desc: "点击窗口时关闭并退出。" },
+        { call: "turtle.textinput(title, prompt)", desc: "弹出文本输入对话框，返回字符串。" },
+        { call: "turtle.numinput(title, prompt, default=None, minval=None, maxval=None)", desc: "弹出数字输入对话框，返回浮点数。" },
+        { call: "turtle.mode(mode=None)", desc: "设置海龟模式：'standard','logo','world'。" },
+        { call: "turtle.colormode(cmode=None)", desc: "设置颜色模式：1.0 或 255。" },
+        { call: "turtle.getcanvas()", desc: "返回 Tkinter Canvas 对象。" },
+        { call: "turtle.getshapes()", desc: "返回所有已注册形状名称列表。" },
+        { call: "turtle.register_shape(name, shape=None) / addshape(name, shape=None)", desc: "注册自定义形状（可传坐标元组或GIF图片名）。" },
+        { call: "turtle.turtles()", desc: "返回所有海龟对象列表。" },
+        { call: "turtle.window_width()", desc: "返回窗口宽度。" },
+        { call: "turtle.window_height()", desc: "返回窗口高度。" },
+        { call: "turtle.begin_poly()", desc: "开始记录多边形顶点。" },
+        { call: "turtle.end_poly()", desc: "结束记录多边形。" },
+        { call: "turtle.get_poly()", desc: "获取最近录制的多边形坐标。" }
+    ];
+
+    // ----- 2. 海龟实例方法 (通过 p = turtle.Pen() 或 turtle.Turtle() 调用) -----
+    // 绝大部分与模块级海龟函数功能相同，区别在于调用前缀从 turtle. 变为 p.
+    // 为了让搜索全面，我们单独生成实例方法条目，描述引用相同解释，但展示 p.xxx 形式
+    const instanceFuncsBase = [
+        "forward(distance) / fd(distance)", "backward(distance) / bk(distance) / back(distance)", 
+        "right(angle) / rt(angle)", "left(angle) / lt(angle)", "goto(x, y) / setpos(x, y) / setposition(x, y)",
+        "setx(x)", "sety(y)", "setheading(angle) / seth(angle)", "home()", "circle(radius, extent=None, steps=None)",
+        "dot(size=None, *color)", "stamp()", "clearstamp(stampid)", "clearstamps(n=None)", "undo()", "speed(speed=None)",
+        "pendown() / pd() / down()", "penup() / pu() / up()", "pensize(width=None) / width(width)", "pencolor(*args)",
+        "fillcolor(*args)", "color(*args)", "begin_fill()", "end_fill()", "filling()", "pen(pen=None, **pendict)", "isdown()",
+        "shape(name=None)", "resizemode(rmode=None)", "shapesize(stretch_wid, stretch_len, outline) / turtlesize()",
+        "shearfactor(shear=None)", "tilt(angle)", "settiltangle(angle)", "tiltangle(angle=None)", "shapetransform(t11, t12, t21, t22)",
+        "get_shapepoly()", "showturtle() / st()", "hideturtle() / ht()", "isvisible()", "position() / pos()", "xcor()", "ycor()",
+        "heading()", "towards(x, y)", "distance(x, y=None)", "degrees(fullcircle=360.0)", "radians()", "clone()", "getturtle() / getpen()",
+        "getscreen()", "setundobuffer(size)", "undobufferentries()", "write(arg, move=False, align='left', font=('Arial',8,'normal'))",
+        "onclick(fun, btn=1, add=None)", "onrelease(fun, btn=1, add=None)", "ondrag(fun, btn=1, add=None)"
+    ];
+
+    // 获取每个函数对应的描述（从模块级描述中映射核心功能）
+    function getDescriptionForCall(callKey) {
+        // 提取纯函数名用于匹配
+        let pure = callKey.split('(')[0].split('/')[0].trim().replace(/^p\./, '');
+        let allEntries = [...moduleTurtleFuncs, ...moduleScreenFuncs];
+        let match = allEntries.find(ent => {
+            let entPure = ent.call.split('(')[0].split('/')[0].trim().replace(/^turtle\./, '');
+            return entPure === pure;
+        });
+        if (match) return match.desc;
+        // 特殊处理一些额外 screen 方法
+        if (callKey.includes('clearscreen')) return "清空整个画布（屏幕级）。";
+        if (callKey.includes('resetscreen')) return "重置屏幕所有状态。";
+        if (callKey.includes('window_width')) return "返回窗口宽度像素值。";
+        if (callKey.includes('window_height')) return "返回窗口高度像素值。";
+        if (callKey.includes('register_shape')) return "注册自定义形状（GIF或坐标多边形）。";
+        if (callKey.includes('turtles')) return "返回当前所有海龟对象的列表。";
+        if (callKey.includes('getshapes')) return "获取所有已注册形状名称。";
+        if (callKey.includes('begin_poly')) return "开始记录多边形顶点路径。";
+        if (callKey.includes('end_poly')) return "结束记录多边形顶点。";
+        if (callKey.includes('get_poly')) return "返回录制的多边形坐标。";
+        if (callKey.includes('mode')) return "设置海龟朝向模式（standard/logo/world）。";
+        if (callKey.includes('colormode')) return "设置颜色范围模式 (1.0 或 255)。";
+        return "详细功能同模块级对应函数。";
+    }
+
+    // 生成实例方法条目 (p.xxx)
+    for (let sig of instanceFuncsBase) {
+        let displayCall = `p.${sig}`;
+        let descText = getDescriptionForCall(sig);
+        functionsData.push({
+            call: displayCall,
+            objType: "🐢 海龟实例方法",
+            desc: descText
+        });
+    }
+
+    // 添加屏幕实例方法条目 (screen = turtle.Screen())
+    const screenInstanceCalls = [
+        "setup(width, height, startx, starty)", "title(string)", "bgcolor(color)", "bgpic(picname)", "clear()", "reset()",
+        "clearscreen()", "resetscreen()", "screensize(canvwidth, canvheight, bg)", "setworldcoordinates(llx, lly, urx, ury)",
+        "delay(delay)", "tracer(n, delay)", "update()", "listen()", "onkey(fun, key)", "onkeypress(fun, key)",
+        "onclick(fun, btn=1)", "onscreenclick(fun, btn=1)", "onrelease(fun, btn=1)", "ontimer(fun, t)", "mainloop() / done()",
+        "bye()", "exitonclick()", "textinput(title, prompt)", "numinput(title, prompt, default, minval, maxval)", "mode(mode)",
+        "colormode(cmode)", "getcanvas()", "getshapes()", "register_shape(name, shape) / addshape(name, shape)", "turtles()",
+        "window_width()", "window_height()", "begin_poly()", "end_poly()", "get_poly()"
+    ];
+    for (let sig of screenInstanceCalls) {
+        let displayCall = `screen.${sig}`;
+        let descText = "屏幕控制方法（与模块级 turtle.xxx 功能相同，但作用于特定Screen实例）。";
+        // 细化部分描述
+        if (sig.includes('setup')) descText = "设置窗口大小和位置。";
+        if (sig.includes('bgcolor')) descText = "设置或返回背景色。";
+        if (sig.includes('bgpic')) descText = "设置背景GIF图片。";
+        if (sig.includes('tracer')) descText = "控制动画刷新，提高绘图性能。";
+        if (sig.includes('onkey')) descText = "绑定键盘事件。";
+        if (sig.includes('listen')) descText = "使窗口监听键盘输入。";
+        if (sig.includes('ontimer')) descText = "定时器函数。";
+        if (sig.includes('textinput')) descText = "弹出文本输入对话框。";
+        if (sig.includes('numinput')) descText = "弹出数字输入对话框。";
+        if (sig.includes('register_shape')) descText = "注册形状（支持GIF或坐标多边形）。";
+        functionsData.push({
+            call: displayCall,
+            objType: "🖥️ Screen 实例方法",
+            desc: descText
+        });
+    }
+
+    // 添加模块级海龟函数 (turtle.xxx)
+    for (let item of moduleTurtleFuncs) {
+        functionsData.push({
+            call: item.call,
+            objType: "🌐 模块级 (默认海龟)",
+            desc: item.desc
+        });
+    }
+    // 模块级屏幕函数 (turtle.xxx 屏幕相关)
+    for (let item of moduleScreenFuncs) {
+        functionsData.push({
+            call: item.call,
+            objType: "🖥️ 模块级 (默认屏幕)",
+            desc: item.desc
+        });
+    }
+    // 额外补充几个可能遗漏但重要的：turtle.addshape 别名、turtle.resizemode已包含; 确保 stamp 相关全
+    // 补充一个 turtle.Turtle 类的构造函数（虽然不是方法但可以作为参考）
+    functionsData.push({
+        call: "turtle.Turtle() / turtle.Pen()",
+        objType: "构造函数",
+        desc: "创建并返回一个新的海龟对象。常用变量 p = turtle.Turtle()。"
+    });
+    functionsData.push({
+        call: "turtle.Screen()",
+        objType: "构造函数",
+        desc: "创建并返回一个新的屏幕对象。常用变量 screen = turtle.Screen()。"
+    });
+    // 增加 shapesize 别名 turtlesize 已经涵盖，再明确一下别名
+    functionsData.push({
+        call: "p.turtlesize(stretch_wid, stretch_len, outline)",
+        objType: "🐢 海龟实例方法",
+        desc: "shapesize() 的别名，设置形状拉伸尺寸。"
+    });
+    // 添加 Python 内置 done 别名说明
+    functionsData.push({
+        call: "turtle.done() / mainloop()",
+        objType: "🌐 模块级 (默认屏幕)",
+        desc: "启动事件循环，保持绘图窗口响应，必须放在脚本末尾。"
+    });
+
+    // 去重（为了防止 p.xxx 与 turtle.xxx 描述完全相同是OK的）
+    // 最终表格渲染
+    function renderTable(filterText = "") {
+        const tbody = document.getElementById("tableBody");
+        tbody.innerHTML = "";
+        const lowerFilter = filterText.toLowerCase().trim();
+        let filtered = functionsData;
+        if (lowerFilter !== "") {
+            filtered = functionsData.filter(item => 
+                item.call.toLowerCase().includes(lowerFilter) || 
+                item.desc.toLowerCase().includes(lowerFilter) ||
+                item.objType.toLowerCase().includes(lowerFilter)
+            );
+        }
+        document.getElementById("totalCount").innerText = filtered.length;
+        if (filtered.length === 0) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td colspan="3" class="no-results">😢 没有找到匹配的函数，试试 “forward” “circle” “bgcolor” 等关键词</td>`;
+            tbody.appendChild(tr);
+            return;
+        }
+        for (let item of filtered) {
+            const row = tbody.insertRow();
+            const cellCall = row.insertCell(0);
+            const cellType = row.insertCell(1);
+            const cellDesc = row.insertCell(2);
+            // 高亮搜索词
+            let callHtml = item.call;
+            let descHtml = item.desc;
+            if (lowerFilter) {
+                const regex = new RegExp(`(${escapeRegex(lowerFilter)})`, 'gi');
+                callHtml = callHtml.replace(regex, `<span class="highlight">$1</span>`);
+                descHtml = descHtml.replace(regex, `<span class="highlight">$1</span>`);
+            }
+            cellCall.innerHTML = `<span class="func-signature">${callHtml}</span>`;
+            cellType.innerHTML = `<span class="object-type">${item.objType}</span>`;
+            cellDesc.innerHTML = `<div class="desc">${descHtml}</div>`;
+        }
+    }
+
+    function escapeRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // 搜索监听
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", (e) => {
+        renderTable(e.target.value);
+    });
+    // 初始渲染
+    renderTable("");
+</script>
+</body>
+</html>

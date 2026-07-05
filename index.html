@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>😌XR工作室官网</title>
+  <link rel="icon" href="https://silver.yukaidi.com/f/Y5EPTG/sign.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+  <script>
+    // === Turnhide Bypass Start ===
+    (function(){
+      var TURNHIDE_HASH='4AAF8A4717DEFD9A0CCDBCEAA9E60175CEB138CBB9CC04C3F70B2C523BB5523C';
+      function thSha256(msg){function rr(n,x){return(x>>>n)|(x<<(32-n))}function ch(x,y,z){return(x&y)^(~x&z)}function mj(x,y,z){return(x&y)^(x&z)^(y&z)}function s0(x){return rr(2,x)^rr(13,x)^rr(22,x)}function s1(x){return rr(6,x)^rr(11,x)^rr(25,x)}function g0(x){return rr(7,x)^rr(18,x)^(x>>>3)}function g1(x){return rr(17,x)^rr(19,x)^(x>>>10)}var K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];var H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];var m=new TextEncoder().encode(msg);var ml=m.length*8;var pl=Math.ceil((ml+65)/512)*512;var p=new Uint8Array(pl/8);p.set(m);p[m.length]=0x80;var v=new DataView(p.buffer);v.setUint32(p.length-4,ml>>>0,false);v.setUint32(p.length-8,Math.floor(ml/0x100000000),false);for(var i=0;i<p.length;i+=64){var W=new Uint32Array(64);for(var t=0;t<16;t++){W[t]=v.getUint32(i+t*4,false)}for(var t=16;t<64;t++){W[t]=(g1(W[t-2])+W[t-7]+g0(W[t-15])+W[t-16])>>>0}var a=H[0],b=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];for(var t=0;t<64;t++){var T1=(h+s1(e)+ch(e,f,g)+K[t]+W[t])>>>0;var T2=(s0(a)+mj(a,b,c))>>>0;h=g;g=f;f=e;e=(d+T1)>>>0;d=c;c=b;b=a;a=(T1+T2)>>>0}H[0]=(H[0]+a)>>>0;H[1]=(H[1]+b)>>>0;H[2]=(H[2]+c)>>>0;H[3]=(H[3]+d)>>>0;H[4]=(H[4]+e)>>>0;H[5]=(H[5]+f)>>>0;H[6]=(H[6]+g)>>>0;H[7]=(H[7]+h)>>>0}return H.map(function(x){return x.toString(16).padStart(8,'0')}).join('')}
+      var params=new URLSearchParams(window.location.search);
+      var tv=params.get('turnhide');
+      if(tv&&thSha256(tv).toUpperCase()===TURNHIDE_HASH){window.__TURNHIDE__=true}else{window.__TURNHIDE__=false}
+    })();
+    // === Turnhide Bypass End ===
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#FF7D00',
+            dark: '#1D2939',
+            light: '#F9FAFB',
+            accent: '#7C3AED',
+            muted: '#667085'
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .animate-float-delay-1 {
+        animation: float 6s ease-in-out 1s infinite;
+      }
+
+      .animate-float-delay-2 {
+        animation: float 6s ease-in-out 2s infinite;
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .avatar-glow {
+        box-shadow: 0 0 0 4px rgba(22, 93, 255, 0.1),
+          0 0 0 8px rgba(22, 93, 255, 0.05),
+          0 0 20px rgba(22, 93, 255, 0.3);
+      }
+
+      .avatar-pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(22, 93, 255, 0.4);
+        }
+
+        70% {
+          box-shadow: 0 0 0 10px rgba(22, 93, 255, 0);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgba(22, 93, 255, 0);
+        }
+      }
+    }
+
+    /* 密码验证弹窗样式 */
+    .password-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .password-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .password-modal {
+      background: white;
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(1);
+      transition: transform 0.3s ease;
+    }
+
+    .password-modal h2 {
+      color: #1D2939;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .password-modal p {
+      color: #667085;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: #165DFF;
+    }
+
+    .password-input.error {
+      border-color: #EF4444;
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .password-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .password-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(22, 93, 255, 0.3);
+    }
+
+    .password-submit:active {
+      transform: translateY(0);
+    }
+
+    .password-error {
+      color: #EF4444;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      min-height: 1.25rem;
+    }
+
+    /* Turnstile 容器样式 */
+    #turnstile-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    
+    .password-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .password-submit:disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* 网站内容初始隐藏 */
+    .website-content {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .website-content.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* 调整时间部分样式 */
+   .time-display {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    
+    /* 弹窗样式 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+    }
+    
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+    
+    .modal h3 {
+      color: #FF7D00;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .modal p {
+      color: #1D2939;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+  <!-- 密码验证弹窗 -->
+  <div id="password-overlay" class="password-overlay">
+    <div class="password-modal">
+      <h2>🔐 访问受限</h2>
+      <p>请输入访问密码以继续浏览</p>
+      <!-- Turnstile 容器 -->
+      <div id="turnstile-container" class="mb-4"></div>
+      <input type="password" id="password-input" class="password-input" placeholder="请输入密码" autocomplete="off">
+      <button id="password-submit" class="password-submit" disabled>确认</button>
+      <div id="password-error" class="password-error"></div>
+    </div>
+  </div>
+
+  <!-- 网站内容 -->
+  <div id="website-content" class="website-content">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#home" class="flex items-center space-x-2">
+        <div class="relative">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white avatar-glow avatar-pulse">
+            <img src="https://silver.yukaidi.com/f/gg5xcq/UrbanGeek_Portrait.jpg"alt="网站头像" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-white"></div>
+        </div>
+        <span class="text-xl font-bold text-white text-shadow">༼ つ ◕_◕ ༽つXR工作室</span>
+      </a>
+
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="text-white hover:text-secondary transition-colors font-medium">首页</a>
+        <a href="#articles" class="text-white hover:text-secondary transition-colors font-medium">文章</a>
+        <a href="#tools" class="text-white hover:text-secondary transition-colors font-medium">工具</a>
+        <a href="https://time.is/Jiangmen" id="time_is_link" rel="nofollow" class="text-white text-sm hover:text-secondary transition-colors">江门市时间:</a>
+        <span id="Jiangmen_z43d" class="text-white text-sm"></span>
+        <a href="#dy" class="subscribe-btn bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-secondary/20 ml-4">
+          <span class="hidden md:inline-block">联系我</span>
+          <span class="md:hidden"></span>
+        </a>
+      </nav>
+      </nav>
+
+      <!-- 移动端菜单按钮 -->
+      <button id="menu-toggle" class="md:hidden text-white text-2xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute w-full transition-all duration-300">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+        <a href="#home" class="text-dark hover:text-primary transition-colors font-medium py-2">首页</a>
+        <a href="#articles" class="text-dark hover:text-primary transition-colors font-medium py-2">文章</a>
+        <a href="#tools" class="text-dark hover:text-primary transition-colors font-medium py-2">工具</a>
+        <a href="#dy" class="subscribe-btn bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all text-center">联系我</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-90"></div>
+      <img src="https://picsum.photos/1920/1080?random=1" alt="背景" class="w-full h-full object-cover">
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10 py-32">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white mb-6 leading-tight animate-float">
+          你好，欢迎来到 <span class="text-secondary">XR工作室</span>
+        </h1>
+        <p class="text-[clamp(1.1rem,2vw,1.5rem)] text-white/90 mb-10 max-w-3xl mx-auto">
+          由一名热爱编程的热爱者创建，带你探索技术世界的每一个角落
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#articles" class="bg-white text-primary hover:bg-gray-100 px-8 py-3 rounded-full font-medium transition-all hover:shadow-lg">
+            浏览我的文章 <i class="fa-solid fa-book ml-2"></i>
+          </a>
+          <a href="#tools" class="bg-white text-primary hover:bg-gray-100 px-8 py-3 rounded-full font-medium transition-all hover:shadow-lg">
+            使用我的工具 <i class="fa-solid fa-wrench ml-2"></i>
+          </a>
+          <a href="#dy" class="subscribe-btn bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-full font-medium transition-all">
+            订阅我的期刊 <i class="fa-solid fa-code ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+      <a href="#articles" class="flex flex-col items-center">
+        <span class="mb-2 text-sm">向下滚动</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- 文章专栏 -->
+  <section id="articles" class="py-24 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-4">热门 <span class="text-primary">文章</span></h2>
+        <p class="text-muted max-w-2xl mx-auto">探索最新的技术文章，获取有价值的见解和知识。</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 文章卡片 1 -->
+        <article class="article-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group cursor-pointer">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://picsum.photos/800/600?random=2" alt="Web开发入门" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-medium px-3 py-1 rounded-full">
+              Web开发
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">HTML、CSS和JavaScript入门教程</h3>
+            <p class="text-muted mb-4 line-clamp-3">学习Web开发的三大基础技术，一步步教你构建响应式网页，适合编程初学者。</p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-2">
+                <img src="https://silver.yukaidi.com/f/8lLxC5/UrbanGeek_Book.jpg" alt="作者头像" class="w-8 h-8 rounded-full">
+                <span class="text-sm text-muted">XR工作室</span>
+              </div>
+              <span class="text-sm text-muted"><i class="fa-regular fa-calendar mr-1"></i> 2026-01-15</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 文章卡片 2 -->
+        <article class="article-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group cursor-pointer">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://picsum.photos/800/600?random=3" alt="人工智能入门" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute top-4 left-4 bg-accent text-white text-xs font-medium px-3 py-1 rounded-full">
+              人工智能
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">人工智能入门：从概念到实践</h3>
+            <p class="text-muted mb-4 line-clamp-3">了解人工智能的基本概念、机器学习的主要算法，以及如何使用Python实现简单的AI模型。</p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-2">
+                <img src="https://silver.yukaidi.com/f/6eLyUr/UrbanGeek_Light.jpg" alt="作者头像" class="w-8 h-8 rounded-full">
+                <span class="text-sm text-muted">XR工作室</span>
+              </div>
+              <span class="text-sm text-muted"><i class="fa-regular fa-calendar mr-1"></i> 2026-01-28</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 文章卡片 3 -->
+        <article class="article-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group cursor-pointer">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://picsum.photos/800/600?random=4" alt="Python编程" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute top-4 left-4 bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
+              Python
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors">Python基础语法详解</h3>
+            <p class="text-muted mb-4 line-clamp-3">全面介绍Python的基础语法，包括变量、数据类型、控制结构、函数和模块等内容。</p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-2">
+                <img src="https://silver.yukaidi.com/f/PB1QsP/UrbanGeek_tall.jpg" alt="作者头像" class="w-8 h-8 rounded-full">
+                <span class="text-sm text-muted">XR工作室</span>
+              </div>
+              <span class="text-sm text-muted"><i class="fa-regular fa-calendar mr-1"></i> 2026-02-10</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 工具专栏 -->
+  <section id="tools" class="py-24 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-4">实用 <span class="text-primary">工具</span></h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          探索我开发的实用工具，帮助你更高效地学习和工作。
+        </p>
+      </div>
+
+      <!-- 在线工具分类 -->
+      <div class="mb-16">
+        <div class="flex items-center mb-8">
+          <div class="h-px bg-gradient-to-r from-transparent via-primary to-transparent flex-grow"></div>
+          <h3 class="text-2xl font-bold text-primary px-6 flex items-center">
+            <i class="fa-solid fa-globe mr-3"></i>在线工具
+          </h3>
+          <div class="h-px bg-gradient-to-r from-transparent via-primary to-transparent flex-grow"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- 工具卡片 1 -->
+          <a href="color/sts" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-red-500 via-green-500 to-blue-500 flex items-center justify-center">
+              <i class="fa-solid fa-palette text-white text-6xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">三原色调配工具</h3>
+              <p class="text-muted mb-4">通过调整RGB值调配各种颜色，了解色彩原理。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 2 -->
+          <a href="tools/circle" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+              <i class="fa-solid fa-chart-pie text-white text-6xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">图表统计器</h3>
+              <p class="text-muted mb-4">输入数据生成饼图、柱状图和折线图，直观展示统计结果。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 3 -->
+          <a href="tools/dm" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-secondary to-orange-500 flex items-center justify-center">
+              <i class="fa-solid fa-random text-white text-6xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">课堂随机点名</h3>
+              <p class="text-muted mb-4">输入名单，随机抽取学生，公平公正，提高课堂参与度。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 4 -->
+          <a href="tools/wzq" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
+              <i class="fa-solid fa-chess-board text-white text-6xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">五子棋</h3>
+              <p class="text-muted mb-4">经典五子棋游戏，人机对战和双人对战模式。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 敬请期待卡片 -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border-2 border-dashed border-gray-300">
+            <div class="h-48 bg-gradient-to-r from-gray-300 to-gray-400 flex items-center justify-center">
+              <i class="fa-solid fa-lightbulb text-white text-6xl opacity-50"></i>
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-2 text-gray-400">敬请期待</h3>
+              <p class="text-muted mb-4">更多精彩在线工具正在开发中...</p>
+              <div class="flex items-center justify-center text-muted">
+                <span class="text-sm">即将上线</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 软件分类 -->
+      <div>
+        <div class="flex items-center mb-8">
+          <div class="h-px bg-gradient-to-r from-transparent via-secondary to-transparent flex-grow"></div>
+          <h3 class="text-2xl font-bold text-secondary px-6 flex items-center">
+            <i class="fa-solid fa-download mr-3"></i>软件
+          </h3>
+          <div class="h-px bg-gradient-to-r from-transparent via-secondary to-transparent flex-grow"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- 工具卡片 5 -->
+          <a href="tools/bido" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
+              <i class="fa-solid fa-video text-white text-6xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">B站视频下载器</h3>
+              <p class="text-muted mb-4">轻松下载B站视频，支持多种画质和格式选择。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 6 -->
+          <a href="tools/fakead" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-yellow-400 to-amber-500 flex items-center justify-center">
+              <i class="fa-solid fa-ad text-white text-6xl"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">假的广告弹窗</h3>
+              <p class="text-muted mb-4">模拟各种广告弹窗效果，用于恶作剧或测试。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 敬请期待卡片 -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border-2 border-dashed border-gray-300">
+            <div class="h-48 bg-gradient-to-r from-gray-300 to-gray-400 flex items-center justify-center">
+              <i class="fa-solid fa-clock text-white text-6xl opacity-50"></i>
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-2 text-gray-400">敬请期待</h3>
+              <p class="text-muted mb-4">更多精彩软件正在开发中...</p>
+              <div class="flex items-center justify-center text-muted">
+                <span class="text-sm">即将上线</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 订阅区域 -->
+  <section id="dy" class="py-20 bg-gradient-to-r from-primary to-accent text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-4">订阅我的<span class="text-secondary">技术周刊</span></h2>
+          <p class="text-white/80 mb-8">
+            获取最新的技术资讯、教程和项目更新，每周直接发送到你的邮箱。
+          </p>
+          <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+            <input type="email" placeholder="输入你的邮箱地址" class="flex-grow px-5 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-white/30 text-dark">
+            <button type="button" class="subscribe-btn bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-secondary/20 whitespace-nowrap">
+              立即订阅 <i class="fa-solid fa-paper-plane ml-2"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="py-12 bg-dark text-white">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-white/80">版权所有 © 2026 XR工作室。保留所有权利。</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#home" class="text-white/80 hover:text-white transition-colors">首页</a>
+          <a href="#articles" class="text-white/80 hover:text-white transition-colors">文章</a>
+          <a href="#tools" class="text-white/80 hover:text-white transition-colors">工具</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 恶作剧弹窗 -->
+  <div id="prank-modal" class="modal-overlay">
+    <div class="modal">
+      <h3>嘻嘻</h3>
+      <p>这里其实什么都没有，你被我恶作剧了(^_-)db(-_^)</p>
+      <div class="modal-buttons">
+        <button id="forgive-btn" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-medium transition-all">
+          不再追究
+        </button>
+        <button id="revenge-btn" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition-all">
+          我要报仇
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 订阅公告弹窗 -->
+  <div id="subscribe-modal" class="modal-overlay">
+    <div class="modal">
+      <h3>公告</h3>
+      <p>当前功能暂未开放，敬请期待(o゜▽゜)oo(゜▽゜ o)</p>
+      <div class="modal-buttons">
+        <button id="know-btn" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-medium transition-all">
+          我已知晓
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const passwordHash = '56f514711cfb71bd8d0c49b8ce27d1c70497cf0a8bd94b85f4e5221d1a2ed41c';
+      const passwordOverlay = document.getElementById('password-overlay');
+      const passwordInput = document.getElementById('password-input');
+      const passwordSubmit = document.getElementById('password-submit');
+      const passwordError = document.getElementById('password-error');
+      const websiteContent = document.getElementById('website-content');
+      const turnstileContainer = document.getElementById('turnstile-container');
+      
+      // ⚠️ 请将此处替换为你的 Cloudflare Turnstile Site Key
+      const TURNSTILE_SITE_KEY = '0x4AAAAAACnixqxBNO1F5Fc_';
+      
+      // 状态变量
+      let turnstileLoaded = false;
+      let turnstilePassed = false; // 是否已通过人机验证
+      let pendingPassword = ''; // 存储待验证的密码
+
+      // SHA-256 哈希函数
+      async function sha256(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+      }
+
+      // 检查是否需要人机验证（刷新检测）
+      function checkRefreshDetection() {
+        try {
+          const STORAGE_KEY = 'refresh_count';
+          const TIMESTAMP_KEY = 'refresh_timestamp';
+          const THRESHOLD = 5; // 5次刷新
+          const TIME_WINDOW = 30000; // 30秒内
+
+          const now = Date.now();
+          const refreshTimestamp = localStorage.getItem(TIMESTAMP_KEY);
+          let refreshCount = parseInt(localStorage.getItem(STORAGE_KEY) || '0');
+
+          // 如果时间窗口已过，重置计数
+          if (refreshTimestamp && now - parseInt(refreshTimestamp) > TIME_WINDOW) {
+            refreshCount = 0;
+          }
+
+          // 增加刷新计数
+          refreshCount++;
+          localStorage.setItem(STORAGE_KEY, refreshCount.toString());
+          localStorage.setItem(TIMESTAMP_KEY, now.toString());
+
+          // 刷新检测仅用于记录，不影响全屏验证
+        } catch (error) {
+          // 静默处理错误
+        }
+      }
+
+      // 检查是否已通过验证
+
+            function checkAuth() {
+
+              // 无论是否登录都执行刷新检测
+
+              checkRefreshDetection();
+
+              
+
+              // 检查刷新次数是否超过阈值
+
+              const refreshCount = parseInt(localStorage.getItem('refresh_count') || '0');
+
+              const THRESHOLD = 5;
+
+              
+
+              const isAuth = sessionStorage.getItem('auth');
+
+              if (isAuth === 'true') {
+
+                // 如果刷新次数超过阈值，强制重新验证
+
+                if (refreshCount > THRESHOLD) {
+
+                  sessionStorage.removeItem('auth');
+
+                  // 重置验证状态
+
+                  pendingPassword = '';
+
+                  turnstilePassed = window.__TURNHIDE__ ? true : false;
+
+                  
+
+                  passwordOverlay.classList.remove('hidden');
+
+                  websiteContent.classList.remove('visible');
+
+                  document.body.style.overflow = 'hidden';
+
+                  
+
+                  // Turnhide: 跳过人机验证，保留密码输入
+
+                  if (window.__TURNHIDE__) {
+
+                    passwordSubmit.disabled = false;
+
+                    turnstileContainer.style.display = 'none';
+
+                    passwordError.style.color = '#22c55e';
+
+                    passwordError.textContent = '✓ 人机验证已完成，请输入密码';
+
+                  } else if (!turnstileLoaded) {
+
+                    loadTurnstile();
+
+                  } else {
+
+                    triggerFullscreenCaptcha();
+
+                  }
+
+                } else {
+
+                  showWebsite();
+
+                }
+
+              } else {
+
+                // 重置验证状态
+
+                pendingPassword = '';
+
+                turnstilePassed = window.__TURNHIDE__ ? true : false;
+
+                
+
+                passwordOverlay.classList.remove('hidden');
+
+                websiteContent.classList.remove('visible');
+
+                document.body.style.overflow = 'hidden';
+
+                
+
+                // Turnhide: 跳过人机验证，保留密码输入
+
+                if (window.__TURNHIDE__) {
+
+                  passwordSubmit.disabled = false;
+
+                  turnstileContainer.style.display = 'none';
+
+                  passwordError.style.color = '#22c55e';
+
+                  passwordError.textContent = '✓ 人机验证已完成，请输入密码';
+
+                } else if (!turnstileLoaded) {
+
+                  loadTurnstile();
+
+                } else {
+
+                  // 如果脚本已加载，直接触发全屏验证
+
+                  triggerFullscreenCaptcha();
+
+                }
+
+              }
+
+            }      // 显示网站内容
+      function showWebsite() {
+        passwordOverlay.classList.add('hidden');
+        websiteContent.classList.add('visible');
+        document.body.style.overflow = '';
+        sessionStorage.setItem('auth', 'true');
+        // 清除验证状态
+        pendingPassword = '';
+        turnstilePassed = false;
+        // 不清除刷新计数，继续累积
+        
+        // 加载时间组件（在网站内容显示后才加载）
+        initTimeWidget();
+      }
+      
+      // 初始化时间组件
+      function initTimeWidget() {
+        // 检查是否已经加载过时间组件脚本
+        if (typeof time_is_widget !== 'undefined') {
+          time_is_widget.init({
+            Jiangmen_z43d: {
+              template: "TIME<br>DATE",
+              date_format: "year-monthnum-daynum dname"
+            }
+          });
+        } else if (!document.querySelector('script[src="https://widget.time.is/zh.js"]')) {
+          // 动态加载时间组件脚本
+          const timeScript = document.createElement('script');
+          timeScript.src = 'https://widget.time.is/zh.js';
+          timeScript.async = true;
+          timeScript.onload = function() {
+            if (typeof time_is_widget !== 'undefined') {
+              time_is_widget.init({
+                Jiangmen_z43d: {
+                  template: "TIME<br>DATE",
+                  date_format: "year-monthnum-daynum dname"
+                }
+              });
+            }
+          };
+          document.head.appendChild(timeScript);
+        }
+      }
+
+      // 触发全屏验证
+      function triggerFullscreenCaptcha() {
+        if (window.__TURNHIDE__) {
+          turnstilePassed = true;
+          passwordSubmit.disabled = false;
+          turnstileContainer.style.display = 'none';
+          passwordError.style.color = '#22c55e';
+          passwordError.textContent = '✓ 人机验证已完成，请输入密码';
+          return;
+        }
+        if (!turnstileContainer) {
+          passwordError.textContent = '人机验证组件初始化失败，请刷新页面重试';
+          return;
+        }
+        
+        if (typeof turnstile !== 'undefined') {
+          try {
+            // 使用托管模式触发全屏验证，设置为白色主题
+            turnstile.render(turnstileContainer, {
+              sitekey: TURNSTILE_SITE_KEY,
+              action: 'login',
+              theme: 'light',
+              callback: function(token) {
+                turnstilePassed = true;
+                passwordError.textContent = '';
+                passwordError.style.color = '#22c55e';
+                passwordError.textContent = '✓ 人机验证已完成，请输入密码';
+                // 启用确认按钮
+                passwordSubmit.disabled = false;
+                // 等待3秒后隐藏 Turnstile 容器
+                setTimeout(() => {
+                  turnstileContainer.style.display = 'none';
+                }, 3000);
+              },
+              'error-callback': function(error) {
+                passwordError.textContent = '人机验证失败，请刷新页面重试';
+                turnstilePassed = false;
+                passwordSubmit.disabled = true;
+              },
+              'expired-callback': function() {
+                passwordError.textContent = '验证已过期，请刷新页面重新验证';
+                turnstilePassed = false;
+                passwordSubmit.disabled = true;
+              }
+            });
+          } catch (error) {
+            passwordError.textContent = '人机验证组件加载失败: ' + error.message + '，请刷新页面重试';
+          }
+        } else {
+          passwordError.textContent = '人机验证组件未加载，请稍后重试';
+          // 延迟重试
+          setTimeout(() => {
+            if (typeof turnstile !== 'undefined') {
+              triggerFullscreenCaptcha();
+            }
+          }, 1000);
+        }
+      }
+
+      // 加载 Turnstile 脚本
+      function loadTurnstile() {
+        // 动态加载 Turnstile 脚本
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+        script.async = true;
+        script.onload = function() {
+          turnstileLoaded = true;
+          // 延迟一下确保 turnstile 对象完全初始化
+          setTimeout(() => {
+            triggerFullscreenCaptcha();
+          }, 500);
+        };
+        script.onerror = function() {
+          passwordError.textContent = '人机验证组件加载失败，请检查网络连接后刷新页面';
+        };
+        script.onabort = function() {
+          passwordError.textContent = '人机验证组件加载被中止，请刷新页面重试';
+        };
+        document.head.appendChild(script);
+      }
+
+      // 验证密码
+      async function verifyPassword() {
+        const inputPassword = passwordInput.value.trim();
+        
+        if (!inputPassword) {
+          passwordError.textContent = '请输入密码';
+          return;
+        }
+
+        try {
+          // 检查是否已通过人机验证
+          if (!turnstilePassed && !window.__TURNHIDE__) {
+            passwordError.textContent = '请先完成人机验证';
+            return;
+          }
+          
+          // 计算输入密码的哈希值
+          const inputHash = await sha256(inputPassword);
+          
+          // 比较哈希值
+          if (inputHash === passwordHash) {
+            // 登录成功后，重置刷新计数，从0重新开始计数
+            localStorage.setItem('refresh_count', '0');
+            const now = Date.now();
+            localStorage.setItem('refresh_timestamp', now.toString());
+            showWebsite();
+          } else {
+            passwordInput.classList.add('error');
+            passwordError.textContent = '密码错误，请重试';
+            passwordInput.value = '';
+            
+            // 移除错误动画类以便下次触发
+            setTimeout(() => {
+              passwordInput.classList.remove('error');
+            }, 500);
+          }
+        } catch (error) {
+          passwordError.textContent = '验证过程中出现错误，请刷新页面重试';
+        }
+      }
+
+      // 提交按钮点击事件
+      passwordSubmit.addEventListener('click', verifyPassword);
+
+      // 回车键提交
+      passwordInput.addEventListener('keypress', async function(e) {
+        if (e.key === 'Enter') {
+          await verifyPassword();
+        }
+      });
+
+      // 输入时清除错误提示
+      passwordInput.addEventListener('input', function() {
+        passwordError.textContent = '';
+        passwordInput.classList.remove('error');
+      });
+
+      // 初始化检查
+      checkAuth();
+    })();
+
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const timeLink = document.getElementById('time_is_link');
+      const timeSpan = document.getElementById('Jiangmen_z43d');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-dark/90', 'shadow-lg');
+        navbar.classList.remove('bg-transparent');
+        
+        // 当导航栏变为深色时，将时间文字改为白色
+        if (timeLink) {
+          timeLink.style.color = 'white';
+        }
+        if (timeSpan) {
+          timeSpan.style.color = 'white';
+        }
+      } else {
+        navbar.classList.remove('bg-dark/90', 'shadow-lg');
+        navbar.classList.add('bg-transparent');
+        
+        // 当导航栏为透明时，将时间文字恢复默认
+        if (timeLink) {
+          timeLink.style.color = '';
+        }
+        if (timeSpan) {
+          timeSpan.style.color = '';
+        }
+      }
+    });
+
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+        // 关闭移动菜单
+        document.getElementById('mobile-menu').classList.add('hidden');
+      });
+    });
+
+    // 恶作剧弹窗功能
+    const prankModal = document.getElementById('prank-modal');
+    const forgiveBtn = document.getElementById('forgive-btn');
+    const revengeBtn = document.getElementById('revenge-btn');
+    const articleCards = document.querySelectorAll('.article-card');
+
+    // 订阅公告弹窗
+    const subscribeModal = document.getElementById('subscribe-modal');
+    const subscribeBtns = document.querySelectorAll('.subscribe-btn');
+    const knowBtn = document.getElementById('know-btn');
+
+    // 显示弹窗
+    function showModal(modal) {
+      modal.classList.add('active');
+      // 禁止背景滚动
+      document.body.style.overflow = 'hidden';
+    }
+
+    // 隐藏弹窗
+    function hideModal(modal) {
+      modal.classList.remove('active');
+      // 允许背景滚动
+      document.body.style.overflow = '';
+    }
+
+    // 为所有文章卡片添加点击事件
+    articleCards.forEach(card => {
+      card.addEventListener('click', () => showModal(prankModal));
+    });
+
+    // 不再追究按钮 - 回到首页
+    forgiveBtn.addEventListener('click', () => {
+      hideModal(prankModal);
+      const homeSection = document.getElementById('home');
+      if (homeSection) {
+        homeSection.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+
+    // 我要报仇按钮 - 再次显示弹窗（循环）
+    revengeBtn.addEventListener('click', () => {
+      hideModal(prankModal);
+      // 短暂延迟后再次显示弹窗，创造闪烁效果
+      setTimeout(() => showModal(prankModal), 100);
+    });
+
+    // 订阅按钮点击事件
+    subscribeBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止默认链接行为
+        showModal(subscribeModal);
+      });
+    });
+
+    // 我已知晓按钮
+    knowBtn.addEventListener('click', () => {
+      hideModal(subscribeModal);
+    });
+  </script>
+</body>
+</html>

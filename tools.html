@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>😌XR工作室 - 工具箱</title>
+  <link rel="icon" href="https://silver.yukaidi.com/f/Y5EPTG/sign.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#FF7D00',
+            dark: '#1D2939',
+            light: '#F9FAFB',
+            accent: '#7C3AED',
+            muted: '#667085'
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .avatar-glow {
+        box-shadow: 0 0 0 4px rgba(22, 93, 255, 0.1),
+          0 0 0 8px rgba(22, 93, 255, 0.05),
+          0 0 20px rgba(22, 93, 255, 0.3);
+      }
+
+      .avatar-pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(22, 93, 255, 0.4);
+        }
+
+        70% {
+          box-shadow: 0 0 0 10px rgba(22, 93, 255, 0);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgba(22, 93, 255, 0);
+        }
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <div class="relative">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white avatar-glow avatar-pulse">
+            <img src="https://silver.yukaidi.com/f/gg5xcq/UrbanGeek_Portrait.jpg" alt="网站头像" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <span class="text-xl font-bold text-white text-shadow">༼ つ ◕_◕ ༽つXR工作室</span>
+      </a>
+
+      <!-- 桌面导航 -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="text-white hover:text-secondary transition-colors font-medium">首页</a>
+        <a href="index.html#articles" class="text-white hover:text-secondary transition-colors font-medium">文章</a>
+        <a href="tools.html" class="text-white hover:text-secondary transition-colors font-medium">工具</a>
+        <a href="https://time.is/Jiangmen" id="time_is_link" rel="nofollow" class="text-white text-sm hover:text-secondary transition-colors">江门市时间:</a>
+        <span id="Jiangmen_z43d" class="text-white text-sm"></span>
+        <a href="index.html#dy" class="bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-secondary/20 ml-4">
+          <span class="hidden md:inline-block">联系我</span>
+        </a>
+      </nav>
+
+      <!-- 移动端菜单按钮 -->
+      <button id="menu-toggle" class="md:hidden text-white text-2xl">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute w-full transition-all duration-300">
+      <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+        <a href="index.html" class="text-dark hover:text-primary transition-colors font-medium py-2">首页</a>
+        <a href="index.html#articles" class="text-dark hover:text-primary transition-colors font-medium py-2">文章</a>
+        <a href="tools.html" class="text-primary hover:text-primary/80 transition-colors font-medium py-2">工具</a>
+        <a href="index.html#dy" class="bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-full font-medium transition-all text-center">联系我</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section class="min-h-[50vh] flex items-center justify-center relative overflow-hidden pt-20">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-90"></div>
+      <img src="https://picsum.photos/1920/1080?random=5" alt="背景" class="w-full h-full object-cover">
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10 py-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white mb-6 leading-tight animate-float">
+          实用 <span class="text-secondary">工具箱</span>
+        </h1>
+        <p class="text-[clamp(1.1rem,2vw,1.5rem)] text-white/90 mb-10 max-w-3xl mx-auto">
+          探索我开发的实用工具，帮助你更高效地学习和工作
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 工具专栏 -->
+  <section id="tools" class="py-24 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold mb-4">全部 <span class="text-primary">工具</span></h2>
+        <p class="text-muted max-w-2xl mx-auto">
+          精心打造的实用工具，满足你的各种需求
+        </p>
+      </div>
+
+      <!-- 在线工具分类 -->
+      <div class="mb-16">
+        <div class="flex items-center mb-8">
+          <div class="h-px bg-gradient-to-r from-transparent via-primary to-transparent flex-grow"></div>
+          <h3 class="text-2xl font-bold text-primary px-6 flex items-center">
+            <i class="fa-solid fa-globe mr-3"></i>在线工具
+          </h3>
+          <div class="h-px bg-gradient-to-r from-transparent via-primary to-transparent flex-grow"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- 工具卡片 1 -->
+          <a href="color/sts" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-red-500 via-green-500 to-blue-500 flex items-center justify-center">
+              <i class="fa-solid fa-palette text-white text-6xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">三原色调配工具</h3>
+              <p class="text-muted mb-4">通过调整RGB值调配各种颜色，了解色彩原理。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 2 -->
+          <a href="tools/circle" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+              <i class="fa-solid fa-chart-pie text-white text-6xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">图表统计器</h3>
+              <p class="text-muted mb-4">输入数据生成饼图、柱状图和折线图，直观展示统计结果。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 3 -->
+          <a href="tools/dm" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-secondary to-orange-500 flex items-center justify-center">
+              <i class="fa-solid fa-random text-white text-6xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">课堂随机点名</h3>
+              <p class="text-muted mb-4">输入名单，随机抽取学生，公平公正，提高课堂参与度。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 4 -->
+          <a href="tools/wzq" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center">
+              <i class="fa-solid fa-chess-board text-white text-6xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">五子棋</h3>
+              <p class="text-muted mb-4">经典五子棋游戏，人机对战和双人对战模式。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 敬请期待卡片 -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border-2 border-dashed border-gray-300">
+            <div class="h-48 bg-gradient-to-r from-gray-300 to-gray-400 flex items-center justify-center">
+              <i class="fa-solid fa-lightbulb text-white text-6xl opacity-50"></i>
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-2 text-gray-400">敬请期待</h3>
+              <p class="text-muted mb-4">更多精彩在线工具正在开发中...</p>
+              <div class="flex items-center justify-center text-muted">
+                <span class="text-sm">即将上线</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 软件分类 -->
+      <div>
+        <div class="flex items-center mb-8">
+          <div class="h-px bg-gradient-to-r from-transparent via-secondary to-transparent flex-grow"></div>
+          <h3 class="text-2xl font-bold text-secondary px-6 flex items-center">
+            <i class="fa-solid fa-download mr-3"></i>软件
+          </h3>
+          <div class="h-px bg-gradient-to-r from-transparent via-secondary to-transparent flex-grow"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- 工具卡片 5 -->
+          <a href="tools/bido" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center">
+              <i class="fa-solid fa-video text-white text-6xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">B站视频下载器</h3>
+              <p class="text-muted mb-4">轻松下载B站视频，支持多种画质和格式选择。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 工具卡片 6 -->
+          <a href="tools/fakead" target="_blank" class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+            <div class="h-48 bg-gradient-to-r from-yellow-400 to-amber-500 flex items-center justify-center">
+              <i class="fa-solid fa-ad text-white text-6xl group-hover:scale-110 transition-transform"></i>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">假的广告弹窗</h3>
+              <p class="text-muted mb-4">模拟各种广告弹窗效果，用于恶作剧或测试。</p>
+              <div class="flex items-center text-primary font-medium">
+                <span>立即使用</span>
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:ml-3 transition-all"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- 敬请期待卡片 -->
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group border-2 border-dashed border-gray-300">
+            <div class="h-48 bg-gradient-to-r from-gray-300 to-gray-400 flex items-center justify-center">
+              <i class="fa-solid fa-clock text-white text-6xl opacity-50"></i>
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold mb-2 text-gray-400">敬请期待</h3>
+              <p class="text-muted mb-4">更多精彩软件正在开发中...</p>
+              <div class="flex items-center justify-center text-muted">
+                <span class="text-sm">即将上线</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="py-12 bg-dark text-white">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-white/80">版权所有 © 2026 XR工作室。保留所有权利。</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="index.html" class="text-white/80 hover:text-white transition-colors">首页</a>
+          <a href="index.html#articles" class="text-white/80 hover:text-white transition-colors">文章</a>
+          <a href="tools.html" class="text-white/80 hover:text-white transition-colors">工具</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 初始化时间组件
+    function initTimeWidget() {
+      if (typeof time_is_widget !== 'undefined') {
+        time_is_widget.init({
+          Jiangmen_z43d: {
+            template: "TIME<br>DATE",
+            date_format: "year-monthnum-daynum dname"
+          }
+        });
+      } else if (!document.querySelector('script[src="https://widget.time.is/zh.js"]')) {
+        const timeScript = document.createElement('script');
+        timeScript.src = 'https://widget.time.is/zh.js';
+        timeScript.async = true;
+        timeScript.onload = function() {
+          if (typeof time_is_widget !== 'undefined') {
+            time_is_widget.init({
+              Jiangmen_z43d: {
+                template: "TIME<br>DATE",
+                date_format: "year-monthnum-daynum dname"
+              }
+            });
+          }
+        };
+        document.head.appendChild(timeScript);
+      }
+    }
+
+    // 页面加载完成后初始化时间组件
+    document.addEventListener('DOMContentLoaded', initTimeWidget);
+
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const timeLink = document.getElementById('time_is_link');
+      const timeSpan = document.getElementById('Jiangmen_z43d');
+      
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-dark/90', 'shadow-lg');
+        navbar.classList.remove('bg-transparent');
+        
+        // 当导航栏变为深色时，将时间文字改为白色
+        if (timeLink) {
+          timeLink.style.color = 'white';
+        }
+        if (timeSpan) {
+          timeSpan.style.color = 'white';
+        }
+      } else {
+        navbar.classList.remove('bg-dark/90', 'shadow-lg');
+        navbar.classList.add('bg-transparent');
+        
+        // 当导航栏为透明时，将时间文字恢复默认
+        if (timeLink) {
+          timeLink.style.color = '';
+        }
+        if (timeSpan) {
+          timeSpan.style.color = '';
+        }
+      }
+    });
+
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+        // 关闭移动菜单
+        document.getElementById('mobile-menu').classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

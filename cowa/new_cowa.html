@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>课件下载 - XR工作室</title>
+  <link rel="icon" href="https://silver.yukaidi.com/f/Y5EPTG/sign.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="c8f2a7d1.js"></script>
+  <script src="b5e9k3m6.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#FF7D00',
+            dark: '#1D2939',
+            light: '#F9FAFB',
+            accent: '#7C3AED',
+            muted: '#667085'
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+    .login-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .login-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .login-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .login-modal {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    .login-modal h2 {
+      color: #1D2939;
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+    .login-modal .subtitle {
+      color: #667085;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .login-field {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.8rem;
+      border: 2px solid #E5E7EB;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+    .login-field:focus {
+      outline: none;
+      border-color: #165DFF;
+    }
+    .login-field.error {
+      border-color: #EF4444;
+      animation: shake 0.5s;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 0.8rem;
+    }
+    .input-group i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9CA3AF;
+      font-size: 0.9rem;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 0.5rem;
+    }
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(22, 93, 255, 0.3);
+    }
+    .login-btn:active { transform: translateY(0); }
+    .login-btn:disabled {
+      opacity: 0.5; cursor: not-allowed; transform: none;
+    }
+    .login-btn:disabled:hover { transform: none; box-shadow: none; }
+    .login-status {
+      min-height: 1.25rem;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+    .turnstile-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+    .main-content {
+      min-height: 100vh;
+      background: #F9FAFB;
+    }
+    .top-bar {
+      background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar h1 {
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .logout-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .logout-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    .tree-container {
+      max-width: 900px;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+    .tree-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .tree-header {
+      background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+      color: white;
+      padding: 1rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .tree-node {
+      padding: 0;
+      user-select: none;
+    }
+    .tree-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid #F3F4F6;
+      gap: 0.6rem;
+    }
+    .tree-item:last-child { border-bottom: none; }
+    .tree-item:hover { background: #F0F4FF; }
+    .tree-item.folder { font-weight: 500; color: #1D2939; }
+    .tree-item.leaf { font-weight: 400; color: #374151; }
+    .tree-item .arrow {
+      width: 20px;
+      text-align: center;
+      color: #9CA3AF;
+      transition: transform 0.2s;
+      font-size: 0.8rem;
+    }
+    .tree-item .arrow.open { transform: rotate(90deg); }
+    .tree-item .icon { font-size: 1.1rem; }
+    .tree-children {
+      display: none;
+      padding-left: 1.5rem;
+    }
+    .tree-children.open { display: block; }
+    .tree-item .badge {
+      margin-left: auto;
+      background: #EEF2FF;
+      color: #165DFF;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 99px;
+      font-weight: 500;
+    }
+    .tree-item .badge.yukaidi {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+
+    .welcome-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 10001;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .welcome-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .welcome-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .welcome-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .welcome-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(22,93,255,0.9) 0%, rgba(124,58,237,0.9) 100%);
+    }
+    .welcome-content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .welcome-icon {
+      font-size: 5rem;
+      color: white;
+      margin-bottom: 2rem;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .welcome-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .welcome-desc {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+    .welcome-btn {
+      background: white;
+      color: #165DFF;
+      border: none;
+      border-radius: 12px;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .welcome-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+    .welcome-btn:active { transform: translateY(0); }
+    .welcome-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.8rem;
+      background: rgba(29,41,57,0.5);
+    }
+    .notice-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem 0.75rem 2.7rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid #F3F4F6;
+      gap: 0.6rem;
+    }
+    .notice-item:hover { background: #FFF7ED; }
+    .notice-item .icon { font-size: 1.1rem; }
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    .modal-backdrop.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-box {
+      background: white;
+      border-radius: 14px;
+      padding: 2rem;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .modal-box .modal-icon { font-size: 2.5rem; color: #D97706; margin-bottom: 1rem; }
+    .modal-box .modal-text { font-size: 0.95rem; color: #374151; line-height: 1.6; margin-bottom: 1.5rem; }
+    .modal-box .modal-btns { display: flex; gap: 0.8rem; justify-content: center; }
+    .modal-box .modal-btn-cancel {
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #D1D5DB;
+      background: white;
+      color: #6B7280;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .modal-btn-cancel:hover { background: #F3F4F6; }
+    .modal-box .modal-btn-open {
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .modal-btn-open:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(217,119,6,0.3); }
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #9CA3AF;
+      font-size: 0.8rem;
+    }
+
+  </style>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+
+  <div id="welcome-overlay" class="welcome-overlay">
+    <div class="welcome-bg">
+      <img src="https://picsum.photos/1920/1080?random=10" alt="">
+    </div>
+    <div class="welcome-content">
+      <div class="welcome-icon"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+      <h1 class="welcome-title">课件下载中心</h1>
+      <p class="welcome-desc">课件网站已经全新改版！课件系统焕然一新，带来更流畅的下载体验</p>
+      <button id="welcome-btn" class="welcome-btn"><i class="fa-solid fa-right-to-bracket" style="margin-right:0.5rem"></i>立即登录</button>
+      <div class="welcome-footer">版权所有 &copy; 2026 XR工作室。保留所有权利。</div>
+    </div>
+  </div>
+
+  <div id="login-overlay" class="login-overlay">
+    <div class="login-modal">
+      <h2><i class="fa-solid fa-graduation-cap" style="color:#165DFF"></i> 课件下载中心</h2>
+      <p class="subtitle">XR工作室 · 请登录以访问课件资源</p>
+      <div id="login-turnstile" class="turnstile-wrapper"></div>
+      <div class="input-group">
+        <i class="fa-solid fa-mobile-screen"></i>
+        <input type="text" id="login-phone" class="login-field" placeholder="请输入账号/手机号" autocomplete="off">
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="login-password" class="login-field" placeholder="请输入密码" autocomplete="off">
+      </div>
+      <button id="login-btn" class="login-btn" disabled>登 录</button>
+      <div id="login-status" class="login-status"></div>
+    </div>
+  </div>
+
+  <div id="main-content" class="main-content" style="display:none">
+    <div class="top-bar">
+      <h1><i class="fa-solid fa-cloud-arrow-down" style="margin-right:0.4rem"></i> 课件下载中心</h1>
+      <button id="logout-btn" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> 退出登录</button>
+    </div>
+    <div class="tree-container">
+      <div class="tree-card" style="cursor:pointer" onclick="handleYukaidiClick()">
+        <div style="padding:1.2rem 1.5rem;display:flex;align-items:center;gap:0.8rem">
+          <i class="fa-solid fa-cloud" style="font-size:1.5rem;color:#D97706"></i>
+          <div>
+            <div style="font-weight:600;color:#1D2939;font-size:1rem">yukaidi 云盘</div>
+            <div style="font-size:0.8rem;color:#667085">点击直接打开云盘</div>
+          </div>
+          <span class="badge yukaidi" style="margin-left:auto;font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:99px;background:#FEF3C7;color:#D97706;font-weight:500">云盘</span>
+        </div>
+      </div>
+      <div class="tree-card">
+        <div class="tree-header">
+          <i class="fa-solid fa-folder-tree"></i> 共享课件
+          <span style="margin-left:auto;font-size:0.75rem;opacity:0.8">蓝奏云</span>
+        </div>
+        <div id="file-tree" class="tree-node"></div>
+      </div>
+    </div>
+    <div class="footer">版权所有 &copy; 2026 XR工作室。保留所有权利。</div>
+  </div>
+
+
+
+  <div id="notice-modal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-icon"><i class="fa-solid fa-bell"></i></div>
+      <div class="modal-text">有部分地理课件在yukaidi云盘，请移步到yukaidi云盘下载</div>
+      <div class="modal-btns">
+        <button class="modal-btn-cancel" onclick="closeNoticeModal()">取消</button>
+        <button class="modal-btn-open" onclick="openYukaidiFromModal()">打开yukaidi云盘</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const _T=[{n:'地理课件',c:[{n:'百年学典地理课件',k:'L01'},{n:'高分突破地理课件',k:'L02'},{n:'南方新课堂地理课件',k:'L03'}]},{n:'历史课件',c:[{n:'高分突破历史课件第一版',k:'L04'},{n:'高分突破历史课件第二版',k:'L05'},{n:'金牌学案历史课件',k:'L06'}]},{n:'生物课件',c:[{n:'金牌学案生物课件',k:'L07'},{n:'中考解读生物课件PPT',k:'L08'},{n:'中考解读生物课件希沃版',k:'L09'},{n:'中考解读生物真题36套',k:'L10'}]},{n:'数学课件',c:[{n:'金牌学案数学课件',k:'L11'}]},{n:'物理课件',c:[{n:'高分突破物理课件',k:'L12'},{n:'金牌学案物理课件',k:'L13'}]},{n:'英语课件',c:[{n:'高分突破WY版课件',k:'L14'},{n:'高分突破同步课件',k:'L15'},{n:'高分突破音频',k:'L16'},{n:'教材音频',k:'L17'},{n:'金牌学案英语课件',k:'L18'}]},{n:'语文课件',c:[{n:'高分突破语文课件',k:'L19'},{n:'金牌学案语文课件',k:'L20'},{n:'七彩课堂语文课件',k:'L21'}]},{n:'政治课件',k:'L22'}];
+
+    async function sha256(m){const b=new TextEncoder().encode(m);const h=await crypto.subtle.digest('SHA-256',b);return Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+    function b64d(s){try{return atob(s)}catch(e){return null}}
+
+
+    const _SK='0x4AAAAAACnixqxBNO1F5Fc_';
+    const _TS='bbeec1f60f0d531f75f31d01ca395aeb7fcb99d73be6d93134aed4e040a00bf8';
+    let _tl=false,_cp=false,_ts=false;
+
+    function loadTurnstile(){
+      const s=document.createElement('script');
+      s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';
+      s.async=true;
+      s.onload=function(){_tl=true;triggerCaptcha();};
+      s.onerror=function(){document.getElementById('login-status').textContent='人机验证组件加载失败，请检查网络';document.getElementById('login-status').style.color='#EF4444';};
+      document.head.appendChild(s);
+    }
+
+    function triggerCaptcha(){
+      if(!_tl){setTimeout(triggerCaptcha,500);return;}
+      if(typeof turnstile==='undefined'){setTimeout(triggerCaptcha,500);return;}
+      try{
+        turnstile.render(document.getElementById('login-turnstile'),{
+          sitekey:_SK,action:'login',theme:'light',
+          callback:function(){
+            _cp=true;
+            document.getElementById('login-btn').disabled=false;
+            document.getElementById('login-status').textContent='\u2713 人机验证通过，请登录';
+            document.getElementById('login-status').style.color='#22C55E';
+            setTimeout(()=>{document.getElementById('login-turnstile').style.display='none';},1500);
+          },
+          'error-callback':function(){document.getElementById('login-status').textContent='验证失败，请刷新重试';document.getElementById('login-status').style.color='#EF4444';},
+          'expired-callback':function(){_cp=false;document.getElementById('login-btn').disabled=true;document.getElementById('login-status').textContent='验证已过期，请刷新重试';document.getElementById('login-status').style.color='#EF4444';}
+        });
+      }catch(e){document.getElementById('login-status').textContent='人机验证加载失败';document.getElementById('login-status').style.color='#EF4444';}
+    }
+
+    async function handleLogin(){
+      const ph=document.getElementById('login-phone').value.trim();
+      const pw=document.getElementById('login-password').value.trim();
+      const st=document.getElementById('login-status');
+      if(!_cp&&!_ts){st.textContent='请先完成人机验证';st.style.color='#EF4444';return;}
+      if(!ph||!pw){st.textContent='请输入账号和密码';st.style.color='#EF4444';return;}
+      if(!ph){st.textContent='请输入账号';st.style.color='#EF4444';return;}
+      if(/^1\d{10}$/.test(ph)){}else if(ph.length<2){st.textContent='账号格式不正确';st.style.color='#EF4444';document.getElementById('login-phone').classList.add('error');setTimeout(()=>document.getElementById('login-phone').classList.remove('error'),500);return;}
+      const phh=await sha256(ph);const ih=await sha256(pw);
+      const ok=_X7K.find(a=>a.i===phh&&a.h===ih);
+      if(ok){st.textContent='\u2713 登录成功！';st.style.color='#22C55E';sessionStorage.setItem('cowa_auth',await sha256(ph));setTimeout(showMainContent,800);}
+      else{st.textContent='账号或密码错误';st.style.color='#EF4444';document.getElementById('login-phone').classList.add('error');document.getElementById('login-password').classList.add('error');setTimeout(()=>{document.getElementById('login-phone').classList.remove('error');document.getElementById('login-password').classList.remove('error');},500);}
+    }
+
+    function showMainContent(){
+      document.getElementById('login-overlay').classList.add('hidden');
+      document.getElementById('main-content').style.display='';
+      buildFileTree();
+    }
+
+    function handleLogout(){
+      sessionStorage.removeItem('cowa_auth');
+      location.reload();
+    }
+
+    function buildFileTree(){
+      const ct=document.getElementById('file-tree');
+      ct.innerHTML='';
+      _T.forEach(function(cat,idx){
+        const hasSub=!!cat.c;
+        if(hasSub){
+          const uid='t'+Math.random().toString(36).slice(2,8);
+          const item=document.createElement('div');
+          item.className='tree-item folder';
+          item.innerHTML='<span class="arrow" id="a-'+uid+'"><i class="fa-solid fa-chevron-right"></i></span><span class="icon" style="color:#F59E0B"><i class="fa-solid fa-folder"></i></span><span>'+cat.n+'</span>';
+          item.onclick=function(){
+            const ch=document.getElementById(uid);
+            const ar=document.getElementById('a-'+uid);
+            if(ch.classList.contains('open')){ch.classList.remove('open');ar.classList.remove('open');}
+            else{ch.classList.add('open');ar.classList.add('open');}
+          };
+          ct.appendChild(item);
+          const sub=document.createElement('div');
+          sub.className='tree-children';
+          sub.id=uid;
+          if(idx===0){
+            const ni=document.createElement('div');
+            ni.className='notice-item';
+            ni.innerHTML='<span class="icon" style="color:#D97706"><i class="fa-solid fa-bell"></i></span><span style="color:#D97706;font-weight:500">通知</span><span style="font-size:0.8rem;color:#9CA3AF;margin-left:0.3rem">点击查看</span>';
+            ni.onclick=function(e){e.stopPropagation();document.getElementById('notice-modal').classList.add('visible');};
+            sub.appendChild(ni);
+          }
+          cat.c.forEach(function(leaf){
+            const li=document.createElement('div');
+            li.className='tree-item leaf';
+            li.style.paddingLeft='2.7rem';
+            const lk=leaf.k;
+            li.innerHTML='<span class="arrow"></span><span class="icon" style="color:#165DFF"><i class="fa-solid fa-folder-open"></i></span><span>'+leaf.n+'</span><span class="badge">蓝奏云</span>';
+            li.onclick=function(e){e.stopPropagation();const u=b64d(_M3P[lk]);if(u)window.open(u,'_blank');};
+            sub.appendChild(li);
+          });
+          ct.appendChild(sub);
+        }else{
+          const li=document.createElement('div');
+          li.className='tree-item leaf';
+          li.innerHTML='<span class="arrow"></span><span class="icon" style="color:#165DFF"><i class="fa-solid fa-folder-open"></i></span><span>'+cat.n+'</span><span class="badge">蓝奏云</span>';
+          li.onclick=function(){const u=b64d(_M3P[cat.k]);if(u)window.open(u,'_blank');};
+          ct.appendChild(li);
+        }
+      });
+    }
+
+    function handleYukaidiClick(){
+      const u=b64d(_M3P['YK']);
+      if(u)window.open(u,'_blank');
+    }
+
+    function closeNoticeModal(){
+      document.getElementById('notice-modal').classList.remove('visible');
+    }
+
+    function openYukaidiFromModal(){
+      closeNoticeModal();
+      handleYukaidiClick();
+    }
+
+
+    document.getElementById('welcome-btn').addEventListener('click',function(){
+      document.getElementById('welcome-overlay').classList.add('hidden');
+      document.getElementById('login-overlay').classList.add('visible');
+    });
+
+    document.getElementById('login-btn').addEventListener('click',handleLogin);
+    document.getElementById('login-password').addEventListener('keypress',function(e){if(e.key==='Enter')handleLogin();});
+    document.getElementById('login-phone').addEventListener('keypress',function(e){if(e.key==='Enter')document.getElementById('login-password').focus();});
+    document.getElementById('login-phone').addEventListener('input',function(){this.classList.remove('error');const s=document.getElementById('login-status');if(s.textContent.includes('账号'))s.textContent=''});
+    document.getElementById('login-password').addEventListener('input',function(){this.classList.remove('error');const s=document.getElementById('login-status');if(s.textContent.includes('\u5bc6\u7801'))s.textContent='';});
+    document.getElementById('logout-btn').addEventListener('click',handleLogout);
+
+    (function(){
+      const a=sessionStorage.getItem('cowa_auth');
+      if(a){document.getElementById('welcome-overlay').classList.add('hidden');showMainContent();return;}
+      const qp=new URLSearchParams(window.location.search);
+      const tv=qp.get('turnsign');
+      if(tv){
+        sha256(tv).then(function(r){
+          if(r===_TS){
+            _ts=true;
+            document.getElementById('login-btn').disabled=false;
+            document.getElementById('login-turnstile').style.display='none';
+          }else{loadTurnstile();}
+        });
+      }else{loadTurnstile();}
+    })();
+  </script>
+</body>
+</html>

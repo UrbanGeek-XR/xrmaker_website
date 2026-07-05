@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三原色比例查询工具🎨</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎇</text></svg>">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #CACACA;
+    }
+
+   .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #colorPicker {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+   .result {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* 元素间距 */
+    }
+
+   .color-group {
+      display: flex;
+      align-items: center;
+    }
+
+   .color-name {
+      width: 60px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+   .color-bar {
+      height: 30px;
+      flex: 1;
+      margin-right: 10px;
+      border-radius: 5px;
+      background-color: #eee; /* 背景色 */
+      overflow: hidden; /* 防止进度条溢出 */
+    }
+
+   .color-bar > div {
+      height: 100%;
+      transition: width 0.3s;
+    }
+
+   .red > div {
+      background: #FF0000;
+      width: 0%;
+    }
+
+   .green > div {
+      background: #00FF00;
+      width: 0%;
+    }
+
+   .blue > div {
+      background: #0000FF;
+      width: 0%;
+    }
+
+   .ratio {
+      width: 60px;
+      text-align: right;
+      color: #666;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🌈三原色比例调配工具🌈</h1>
+    <input type="color" id="colorPicker">
+    <div class="result">
+      <div class="color-group">
+        <span class="color-name">红色</span>
+        <div class="color-bar red">
+          <div></div>
+        </div>
+        <span class="ratio" id="redRatio">0%</span>
+      </div>
+      <div class="color-group">
+        <span class="color-name">绿色</span>
+        <div class="color-bar green">
+          <div></div>
+        </div>
+        <span class="ratio" id="greenRatio">0%</span>
+      </div>
+      <div class="color-group">
+        <span class="color-name">蓝色</span>
+        <div class="color-bar blue">
+          <div></div>
+        </div>
+        <span class="ratio" id="blueRatio">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('colorPicker').addEventListener('input', function (e) {
+      const hex = e.target.value;
+      const r = parseInt(hex.substr(1, 2), 16);
+      const g = parseInt(hex.substr(3, 2), 16);
+      const b = parseInt(hex.substr(5, 2), 16);
+
+      const redRatio = (r / 255) * 100;
+      const greenRatio = (g / 255) * 100;
+      const blueRatio = (b / 255) * 100;
+
+      // 更新颜色条宽度
+      document.querySelector('.red > div').style.width = `${redRatio}%`;
+      document.querySelector('.green > div').style.width = `${greenRatio}%`;
+      document.querySelector('.blue > div').style.width = `${blueRatio}%`;
+
+      // 更新比例文本
+      document.getElementById('redRatio').textContent = `${redRatio.toFixed(2)}%`;
+      document.getElementById('greenRatio').textContent = `${greenRatio.toFixed(2)}%`;
+      document.getElementById('blueRatio').textContent = `${blueRatio.toFixed(2)}%`;
+    });
+  </script>
+</body>
+
+</html>

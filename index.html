@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" style="background-color: #000;">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 
   <script>
-    // === Turnhide Bypass Start ===
-    (function(){
-      var TURNHIDE_HASH='4AAF8A4717DEFD9A0CCDBCEAA9E60175CEB138CBB9CC04C3F70B2C523BB5523C';
-      function thSha256(msg){function rr(n,x){return(x>>>n)|(x<<(32-n))}function ch(x,y,z){return(x&y)^(~x&z)}function mj(x,y,z){return(x&y)^(x&z)^(y&z)}function s0(x){return rr(2,x)^rr(13,x)^rr(22,x)}function s1(x){return rr(6,x)^rr(11,x)^rr(25,x)}function g0(x){return rr(7,x)^rr(18,x)^(x>>>3)}function g1(x){return rr(17,x)^rr(19,x)^(x>>>10)}var K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];var H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];var m=new TextEncoder().encode(msg);var ml=m.length*8;var pl=Math.ceil((ml+65)/512)*512;var p=new Uint8Array(pl/8);p.set(m);p[m.length]=0x80;var v=new DataView(p.buffer);v.setUint32(p.length-4,ml>>>0,false);v.setUint32(p.length-8,Math.floor(ml/0x100000000),false);for(var i=0;i<p.length;i+=64){var W=new Uint32Array(64);for(var t=0;t<16;t++){W[t]=v.getUint32(i+t*4,false)}for(var t=16;t<64;t++){W[t]=(g1(W[t-2])+W[t-7]+g0(W[t-15])+W[t-16])>>>0}var a=H[0],b=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];for(var t=0;t<64;t++){var T1=(h+s1(e)+ch(e,f,g)+K[t]+W[t])>>>0;var T2=(s0(a)+mj(a,b,c))>>>0;h=g;g=f;f=e;e=(d+T1)>>>0;d=c;c=b;b=a;a=(T1+T2)>>>0}H[0]=(H[0]+a)>>>0;H[1]=(H[1]+b)>>>0;H[2]=(H[2]+c)>>>0;H[3]=(H[3]+d)>>>0;H[4]=(H[4]+e)>>>0;H[5]=(H[5]+f)>>>0;H[6]=(H[6]+g)>>>0;H[7]=(H[7]+h)>>>0}return H.map(function(x){return x.toString(16).padStart(8,'0')}).join('')}
-      var params=new URLSearchParams(window.location.search);
-      var tv=params.get('turnhide');
-      if(tv&&thSha256(tv).toUpperCase()===TURNHIDE_HASH){window.__TURNHIDE__=true}else{window.__TURNHIDE__=false}
-    })();
-    // === Turnhide Bypass End ===
     tailwind.config = {
       theme: {
         extend: {
@@ -100,135 +91,35 @@
       }
     }
 
-    /* 密码验证弹窗样式 */
-    .password-overlay {
+    /* 网站内容 */
+    #website-content {
+      /* 默认可见，无需隐藏 */
+    }
+
+    /* Loading 加载图样式 */
+    #loading-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      background-color: #000000;
+      z-index: 99999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
 
-    .password-overlay.hidden {
+    #loading-overlay.hidden {
       opacity: 0;
       visibility: hidden;
     }
 
-    .password-modal {
-      background: white;
-      border-radius: 16px;
-      padding: 3rem;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      transform: scale(1);
-      transition: transform 0.3s ease;
-    }
-
-    .password-modal h2 {
-      color: #1D2939;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .password-modal p {
-      color: #667085;
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-    }
-
-    .password-input {
-      width: 100%;
-      padding: 1rem;
-      border: 2px solid #E5E7EB;
-      border-radius: 8px;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      transition: border-color 0.3s ease;
-    }
-
-    .password-input:focus {
-      outline: none;
-      border-color: #165DFF;
-    }
-
-    .password-input.error {
-      border-color: #EF4444;
-      animation: shake 0.5s;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
-
-    .password-submit {
-      width: 100%;
-      padding: 1rem;
-      background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .password-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(22, 93, 255, 0.3);
-    }
-
-    .password-submit:active {
-      transform: translateY(0);
-    }
-
-    .password-error {
-      color: #EF4444;
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
-      min-height: 1.25rem;
-    }
-
-    /* Turnstile 容器样式 */
-    #turnstile-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    
-    .password-submit:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .password-submit:disabled:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    /* 网站内容初始隐藏 */
-    .website-content {
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    .website-content.visible {
-      opacity: 1;
-      visibility: visible;
+    #loading-overlay img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
 
     @keyframes float {
@@ -311,28 +202,20 @@
   </style>
 </head>
 <body class="font-inter bg-light text-dark antialiased">
-  <!-- 密码验证弹窗 -->
-  <div id="password-overlay" class="password-overlay">
-    <div class="password-modal">
-      <h2>🔐 访问受限</h2>
-      <p>请输入访问密码以继续浏览</p>
-      <!-- Turnstile 容器 -->
-      <div id="turnstile-container" class="mb-4"></div>
-      <input type="password" id="password-input" class="password-input" placeholder="请输入密码" autocomplete="off">
-      <button id="password-submit" class="password-submit" disabled>确认</button>
-      <div id="password-error" class="password-error"></div>
-    </div>
+  <!-- Loading 加载图 -->
+  <div id="loading-overlay">
+    <img id="loading-img" src="" alt="加载中...">
   </div>
 
   <!-- 网站内容 -->
-  <div id="website-content" class="website-content">
+  <div id="website-content">
   <!-- 导航栏 -->
   <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
       <a href="#home" class="flex items-center space-x-2">
         <div class="relative">
           <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white avatar-glow avatar-pulse">
-            <img src="https://silver.yukaidi.com/f/gg5xcq/UrbanGeek_Portrait.jpg"alt="网站头像" class="w-full h-full object-cover">
+            <img src="https://silver.yukaidi.com/f/Y5EPTG/sign.png"alt="网站头像" class="w-full h-full object-cover">
           </div>
           <div class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-green-500 border-2 border-white"></div>
         </div>
@@ -701,193 +584,52 @@
 
   <script>
     (function() {
-      const passwordHash = '56f514711cfb71bd8d0c49b8ce27d1c70497cf0a8bd94b85f4e5221d1a2ed41c';
-      const passwordOverlay = document.getElementById('password-overlay');
-      const passwordInput = document.getElementById('password-input');
-      const passwordSubmit = document.getElementById('password-submit');
-      const passwordError = document.getElementById('password-error');
-      const websiteContent = document.getElementById('website-content');
-      const turnstileContainer = document.getElementById('turnstile-container');
-      
-      // ⚠️ 请将此处替换为你的 Cloudflare Turnstile Site Key
-      const TURNSTILE_SITE_KEY = '0x4AAAAAACnixqxBNO1F5Fc_';
-      
-      // 状态变量
-      let turnstileLoaded = false;
-      let turnstilePassed = false; // 是否已通过人机验证
-      let pendingPassword = ''; // 存储待验证的密码
+      // === Loading 加载图：设备检测 ===
+      (function initLoading() {
+        var loadingOverlay = document.getElementById('loading-overlay');
+        var loadingImg = document.getElementById('loading-img');
+        var w = window.innerWidth;
+        var loadingImgSrc = w < 768
+          ? 'loading.1080-1920.png'
+          : 'loading.1920-1080.png';
 
-      // SHA-256 哈希函数
-      async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        return hashHex;
-      }
-
-      // 检查是否需要人机验证（刷新检测）
-      function checkRefreshDetection() {
-        try {
-          const STORAGE_KEY = 'refresh_count';
-          const TIMESTAMP_KEY = 'refresh_timestamp';
-          const THRESHOLD = 5; // 5次刷新
-          const TIME_WINDOW = 30000; // 30秒内
-
-          const now = Date.now();
-          const refreshTimestamp = localStorage.getItem(TIMESTAMP_KEY);
-          let refreshCount = parseInt(localStorage.getItem(STORAGE_KEY) || '0');
-
-          // 如果时间窗口已过，重置计数
-          if (refreshTimestamp && now - parseInt(refreshTimestamp) > TIME_WINDOW) {
-            refreshCount = 0;
-          }
-
-          // 增加刷新计数
-          refreshCount++;
-          localStorage.setItem(STORAGE_KEY, refreshCount.toString());
-          localStorage.setItem(TIMESTAMP_KEY, now.toString());
-
-          // 刷新检测仅用于记录，不影响全屏验证
-        } catch (error) {
-          // 静默处理错误
+        function hideLoading() {
+          loadingOverlay.classList.add('hidden');
+          // 隐藏后移除，防止占位
+          setTimeout(function() {
+            loadingOverlay.style.display = 'none';
+          }, 700); // 等淡出动画完成
         }
-      }
 
-      // 检查是否已通过验证
+        // 1. 先预加载 loading 图，等图片加载完成后才展示
+        //    （避免用户看到空白或破损图标）
+        var preloader = new Image();
+        preloader.onload = function() {
+          loadingImg.src = loadingImgSrc;
+          // 2. 页面全部资源加载完成后隐藏 loading
+          if (document.readyState === 'complete') {
+            hideLoading();
+          } else {
+            window.addEventListener('load', hideLoading);
+          }
+          // 3. 保命超时：最多显示 10 秒，强制隐藏
+          setTimeout(hideLoading, 10000);
+        };
+        preloader.onerror = function() {
+          // 图片加载失败也继续流程，不卡死
+          loadingImg.src = loadingImgSrc;
+          if (document.readyState === 'complete') {
+            hideLoading();
+          } else {
+            window.addEventListener('load', hideLoading);
+          }
+          setTimeout(hideLoading, 10000);
+        };
+        preloader.src = loadingImgSrc;
+      })();
 
-            function checkAuth() {
-
-              // 无论是否登录都执行刷新检测
-
-              checkRefreshDetection();
-
-              
-
-              // 检查刷新次数是否超过阈值
-
-              const refreshCount = parseInt(localStorage.getItem('refresh_count') || '0');
-
-              const THRESHOLD = 5;
-
-              
-
-              const isAuth = sessionStorage.getItem('auth');
-
-              if (isAuth === 'true') {
-
-                // 如果刷新次数超过阈值，强制重新验证
-
-                if (refreshCount > THRESHOLD) {
-
-                  sessionStorage.removeItem('auth');
-
-                  // 重置验证状态
-
-                  pendingPassword = '';
-
-                  turnstilePassed = window.__TURNHIDE__ ? true : false;
-
-                  
-
-                  passwordOverlay.classList.remove('hidden');
-
-                  websiteContent.classList.remove('visible');
-
-                  document.body.style.overflow = 'hidden';
-
-                  
-
-                  // Turnhide: 跳过人机验证，保留密码输入
-
-                  if (window.__TURNHIDE__) {
-
-                    passwordSubmit.disabled = false;
-
-                    turnstileContainer.style.display = 'none';
-
-                    passwordError.style.color = '#22c55e';
-
-                    passwordError.textContent = '✓ 人机验证已完成，请输入密码';
-
-                  } else if (!turnstileLoaded) {
-
-                    loadTurnstile();
-
-                  } else {
-
-                    triggerFullscreenCaptcha();
-
-                  }
-
-                } else {
-
-                  showWebsite();
-
-                }
-
-              } else {
-
-                // 重置验证状态
-
-                pendingPassword = '';
-
-                turnstilePassed = window.__TURNHIDE__ ? true : false;
-
-                
-
-                passwordOverlay.classList.remove('hidden');
-
-                websiteContent.classList.remove('visible');
-
-                document.body.style.overflow = 'hidden';
-
-                
-
-                // Turnhide: 跳过人机验证，保留密码输入
-
-                if (window.__TURNHIDE__) {
-
-                  passwordSubmit.disabled = false;
-
-                  turnstileContainer.style.display = 'none';
-
-                  passwordError.style.color = '#22c55e';
-
-                  passwordError.textContent = '✓ 人机验证已完成，请输入密码';
-
-                } else if (!turnstileLoaded) {
-
-                  loadTurnstile();
-
-                } else {
-
-                  // 如果脚本已加载，直接触发全屏验证
-
-                  triggerFullscreenCaptcha();
-
-                }
-
-              }
-
-            }      // 显示网站内容
-      function showWebsite() {
-        passwordOverlay.classList.add('hidden');
-        websiteContent.classList.add('visible');
-        document.body.style.overflow = '';
-        sessionStorage.setItem('auth', 'true');
-        // 清除验证状态
-        pendingPassword = '';
-        turnstilePassed = false;
-        // 不清除刷新计数，继续累积
-        
-        // 加载时间组件（在网站内容显示后才加载）
-        initTimeWidget();
-      }
-      
-      // 初始化时间组件
+      // === 初始化时间组件 ===
       function initTimeWidget() {
-        // 检查是否已经加载过时间组件脚本
         if (typeof time_is_widget !== 'undefined') {
           time_is_widget.init({
             Jiangmen_z43d: {
@@ -896,8 +638,7 @@
             }
           });
         } else if (!document.querySelector('script[src="https://widget.time.is/zh.js"]')) {
-          // 动态加载时间组件脚本
-          const timeScript = document.createElement('script');
+          var timeScript = document.createElement('script');
           timeScript.src = 'https://widget.time.is/zh.js';
           timeScript.async = true;
           timeScript.onload = function() {
@@ -914,146 +655,7 @@
         }
       }
 
-      // 触发全屏验证
-      function triggerFullscreenCaptcha() {
-        if (window.__TURNHIDE__) {
-          turnstilePassed = true;
-          passwordSubmit.disabled = false;
-          turnstileContainer.style.display = 'none';
-          passwordError.style.color = '#22c55e';
-          passwordError.textContent = '✓ 人机验证已完成，请输入密码';
-          return;
-        }
-        if (!turnstileContainer) {
-          passwordError.textContent = '人机验证组件初始化失败，请刷新页面重试';
-          return;
-        }
-        
-        if (typeof turnstile !== 'undefined') {
-          try {
-            // 使用托管模式触发全屏验证，设置为白色主题
-            turnstile.render(turnstileContainer, {
-              sitekey: TURNSTILE_SITE_KEY,
-              action: 'login',
-              theme: 'light',
-              callback: function(token) {
-                turnstilePassed = true;
-                passwordError.textContent = '';
-                passwordError.style.color = '#22c55e';
-                passwordError.textContent = '✓ 人机验证已完成，请输入密码';
-                // 启用确认按钮
-                passwordSubmit.disabled = false;
-                // 等待3秒后隐藏 Turnstile 容器
-                setTimeout(() => {
-                  turnstileContainer.style.display = 'none';
-                }, 3000);
-              },
-              'error-callback': function(error) {
-                passwordError.textContent = '人机验证失败，请刷新页面重试';
-                turnstilePassed = false;
-                passwordSubmit.disabled = true;
-              },
-              'expired-callback': function() {
-                passwordError.textContent = '验证已过期，请刷新页面重新验证';
-                turnstilePassed = false;
-                passwordSubmit.disabled = true;
-              }
-            });
-          } catch (error) {
-            passwordError.textContent = '人机验证组件加载失败: ' + error.message + '，请刷新页面重试';
-          }
-        } else {
-          passwordError.textContent = '人机验证组件未加载，请稍后重试';
-          // 延迟重试
-          setTimeout(() => {
-            if (typeof turnstile !== 'undefined') {
-              triggerFullscreenCaptcha();
-            }
-          }, 1000);
-        }
-      }
-
-      // 加载 Turnstile 脚本
-      function loadTurnstile() {
-        // 动态加载 Turnstile 脚本
-        const script = document.createElement('script');
-        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-        script.async = true;
-        script.onload = function() {
-          turnstileLoaded = true;
-          // 延迟一下确保 turnstile 对象完全初始化
-          setTimeout(() => {
-            triggerFullscreenCaptcha();
-          }, 500);
-        };
-        script.onerror = function() {
-          passwordError.textContent = '人机验证组件加载失败，请检查网络连接后刷新页面';
-        };
-        script.onabort = function() {
-          passwordError.textContent = '人机验证组件加载被中止，请刷新页面重试';
-        };
-        document.head.appendChild(script);
-      }
-
-      // 验证密码
-      async function verifyPassword() {
-        const inputPassword = passwordInput.value.trim();
-        
-        if (!inputPassword) {
-          passwordError.textContent = '请输入密码';
-          return;
-        }
-
-        try {
-          // 检查是否已通过人机验证
-          if (!turnstilePassed && !window.__TURNHIDE__) {
-            passwordError.textContent = '请先完成人机验证';
-            return;
-          }
-          
-          // 计算输入密码的哈希值
-          const inputHash = await sha256(inputPassword);
-          
-          // 比较哈希值
-          if (inputHash === passwordHash) {
-            // 登录成功后，重置刷新计数，从0重新开始计数
-            localStorage.setItem('refresh_count', '0');
-            const now = Date.now();
-            localStorage.setItem('refresh_timestamp', now.toString());
-            showWebsite();
-          } else {
-            passwordInput.classList.add('error');
-            passwordError.textContent = '密码错误，请重试';
-            passwordInput.value = '';
-            
-            // 移除错误动画类以便下次触发
-            setTimeout(() => {
-              passwordInput.classList.remove('error');
-            }, 500);
-          }
-        } catch (error) {
-          passwordError.textContent = '验证过程中出现错误，请刷新页面重试';
-        }
-      }
-
-      // 提交按钮点击事件
-      passwordSubmit.addEventListener('click', verifyPassword);
-
-      // 回车键提交
-      passwordInput.addEventListener('keypress', async function(e) {
-        if (e.key === 'Enter') {
-          await verifyPassword();
-        }
-      });
-
-      // 输入时清除错误提示
-      passwordInput.addEventListener('input', function() {
-        passwordError.textContent = '';
-        passwordInput.classList.remove('error');
-      });
-
-      // 初始化检查
-      checkAuth();
+      initTimeWidget();
     })();
 
     // 导航栏滚动效果
